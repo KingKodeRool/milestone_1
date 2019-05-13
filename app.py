@@ -6,13 +6,14 @@ This needs to have a text base user interface that asks the user what they want 
 - Exit the app
 
 Things that need to be done:
+
 [x] Think of where to store movies
 [x] How will a movie be formatted
 [x] Show user the main text interface and get their input
-[] Allow user to add movie
-[] Allow user to see their movies
-[] Allow user to find a movie
-[] Allow user to exit app
+[] Allow user to add movie(define function)
+[] Allow user to see their movies(define function)
+[] Allow user to find a movie(define function)
+[] Allow user to exit app(define function)
 """
 
 
@@ -23,6 +24,14 @@ def menu():
                                  '\n"find" -  to loop up a movie'
                                  '\n"exit" -  to leave out of the application')
 
+    if user_interface_input == 'add':
+        add_movie()
 
+    elif user_interface_input == 'see':
+        see_movie()
 
+    elif user_interface_input == 'find':
+        find_movie()
 
+    elif user_interface_input == 'exit':
+        print('Exiting the program.')
