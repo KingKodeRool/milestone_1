@@ -1,21 +1,28 @@
-# create function that asks users how they want to look up a movie
-def search_movie(attribute):
-    attribute = input('What would you like to look up the movie by? ')
-    if attribute == 'name':
-    user_movie_name = input('What is the name of the movie you want to look up? ')
-        for movies in movies_list:
-            for name in movies:
+"""
+This needs to have a text base user interface that asks the user what they want to do:
+- Add a movie
+- See collection of movies
+- Find a movie
+- Exit the app
+
+Things that need to be done:
+[x] Think of where to store movies
+[x] How will a movie be formatted
+[x] Show user the main text interface and get their input
+[] Allow user to add movie
+[] Allow user to see their movies
+[] Allow user to find a movie
+[] Allow user to exit app
+"""
+
+
+def menu():
+    user_interface_input = input('Enter one of the following:'
+                                 '\n"add"  -  to add a movie to the collection '
+                                 '\n"see"  -  to look at the current collection of movies '
+                                 '\n"find" -  to loop up a movie'
+                                 '\n"exit" -  to leave out of the application')
 
 
 
 
-movies_list = []
-
-movie_1 = {
-    'name': 'The Matrix',
-    'director': 'Wachowskis',
-    'year': '1994'
-}
-
-movies_list.append(movie_1)
-print(movies_list)
