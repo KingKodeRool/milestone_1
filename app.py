@@ -12,7 +12,7 @@ Things that need to be done:
 [x] Show user the main text interface and get their input
 [x] Allow user to add movie(define function)
 [x] Allow user to see their movies(define function)
-[] Allow user to find a movie(define function)
+[x] Allow user to find a movie(define function)
 [x] Allow user to exit app(define function)
 """
 
@@ -41,7 +41,7 @@ def menu():
             add_movie()
 
         elif user_interface_input == 'see':
-            see_movie()
+            see_movie(movies)
 
         elif user_interface_input == 'find':
             find_movie()
@@ -60,12 +60,12 @@ def menu():
 def add_movie():
     movie_title = input('Enter the title of the movie: ')
     movie_director = input('Enter the director: ')
-    movie_year = int(input('Enter the year the movie was released: '))
+    movie_year = input('Enter the year the movie was released: ')
 
     movie_data = dict()
-    movie_data['Title'] = movie_title
-    movie_data['Director'] = movie_director
-    movie_data['Year'] = movie_year
+    movie_data['title'] = movie_title
+    movie_data['director'] = movie_director
+    movie_data['year'] = movie_year
     print('\nYou have entered this movie: {}\n'.format(movie_data))
     movies.append(movie_data)
     '''
@@ -79,31 +79,32 @@ def add_movie():
     '''
 
 
-def see_movie():
-    for movie in movies:
+def see_movie(movie_list):
+    for movie in movie_list:
         see_movie_details(movie)  # parameter is movie, the scope is only within the see_movie() function.
 
 
 def see_movie_details(movie):  # the value of the parameter above gets sent to this function as an argument.
-    print(f'Movie Name: {movie["Title"]}')
-    print(f'Movie Director: {movie["Director"]}')
-    print(f'Movie Year: {movie["Year"]}\n')
+    print(f'Movie Name: {movie["title"]}')
+    print(f'Movie Director: {movie["director"]}')
+    print(f'Movie Year: {movie["year"]}\n')
 
 
 def find_movie():
-    look_for_property = input('What property of the movie are you looking for: "Name", "Director", or "Year"')
-    look_for_what = input('What specifically are you looking for: ')
+    look_for_property = input('What property of the movie are you looking for: "title", "director", or "year"\n')
+    look_for_what = input('What specifically are you looking for: \n')
 
-    find_movie_by_attribute(look_for_property, look_for_what)
+    found_movies = find_movie_by_attribute(movies, look_for_what, lambda x: x[look_for_property])
+    print()
+    see_movie(found_movies)
 
 
-def find_movie_by_attribute(expect, find):  # lambda functions being used
-
+def find_movie_by_attribute(items, expecting, finding):
     movies_found = []
 
-    for movie in movies:
-        if find(movie) == expect:
-            movies_found.append(movie)
+    for i in items:
+        if finding(i) == expecting:
+            movies_found.append(i)
     return movies_found
 
 
