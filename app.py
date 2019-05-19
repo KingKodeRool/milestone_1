@@ -7,11 +7,11 @@ This needs to have a text base user interface that asks the user what they want 
 
 Things that need to be done:
 
-[] Think of where to store movies
-[] How will a movie be formatted
+[x] Think of where to store movies
+[x] How will a movie be formatted
 [x] Show user the main text interface and get their input
-[] Allow user to add movie(define function)
-[] Allow user to see their movies(define function)
+[x] Allow user to add movie(define function)
+[x] Allow user to see their movies(define function)
 [] Allow user to find a movie(define function)
 [x] Allow user to exit app(define function)
 """
@@ -66,7 +66,7 @@ def add_movie():
     movie_data['Title'] = movie_title
     movie_data['Director'] = movie_director
     movie_data['Year'] = movie_year
-    print('You have entered this movie: {}'.format(movie_data))
+    print('\nYou have entered this movie: {}\n'.format(movie_data))
     movies.append(movie_data)
     '''
     Easier way to make a dictionary and append to list:
@@ -79,5 +79,32 @@ def add_movie():
     '''
 
 
+def see_movie():
+    for movie in movies:
+        see_movie_details(movie)  # parameter is movie, the scope is only within the see_movie() function.
+
+
+def see_movie_details(movie):  # the value of the parameter above gets sent to this function as an argument.
+    print(f'Movie Name: {movie["Title"]}')
+    print(f'Movie Director: {movie["Director"]}')
+    print(f'Movie Year: {movie["Year"]}\n')
+
+
+def find_movie():
+    look_for_property = input('What property of the movie are you looking for: "Name", "Director", or "Year"')
+    look_for_what = input('What specifically are you looking for: ')
+
+    find_movie_by_attribute(look_for_property, look_for_what)
+
+
+def find_movie_by_attribute(expect, find):  # lambda functions being used
+
+    movies_found = []
+
+    for movie in movies:
+        if find(movie) == expect:
+            movies_found.append(movie)
+    return movies_found
+
+
 menu()
-print(movies)
